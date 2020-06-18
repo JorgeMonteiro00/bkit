@@ -1,5 +1,5 @@
 <template>
-  <q-page padding class="fit">
+  <q-page padding class="fit dark">
     <q-splitter
       style="flex-grow: 1"
       class="fit"
@@ -7,10 +7,10 @@
       horizontal
       v-model="splitter">
       <template v-slot:before>
-        <div class="row no-wrap fit">
-          <div style="flex-shrink: 0" class="disks column no-wrap items-center">
+        <div class="row no-wrap fit ndark">
+          <div style="flex-shrink: 0" class="disks column no-wrap items-center ndark">
             <img alt="bKit logo" src="~assets/logotipo.svg" style="height:5vmin;min-height:45px">
-            <span class="text-center">Disks</span>
+            <span class="text-center dark">Disks</span>
             <q-tabs
               v-model="disktab"
               vertical
@@ -32,25 +32,29 @@
                 <tooltip v-if="disklabel(disk)" :label="disklabel(disk)"/>
               </q-tab>
             </q-tabs>
-            <q-btn icon="sync" size="xs" flat color="bkit" @click="load"/>
+             <q-btn icon="sync" size="xs" flat color="bkit" @click="load"/>
           </div>
+          <div class="row no-wrap fit">
           <q-tab-panels v-model="disktab" animated keep-alive class="fit">
             <q-tab-panel
               class="fit"
               :name="disk.id"
               v-for="disk in disks"
-              :key="disk.id">
+              :key="disk.id">oooooooooooooooooooo
                 <explorer v-bind="disk" @backup="backup" @restore="restore" @recover="recover"/>
             </q-tab-panel>
           </q-tab-panels>
         </div>
+        </div>
+        <div class="ndark">
         <q-inner-loading :showing="loading">
           <q-spinner-ios size="100px" color="loader"/>
         </q-inner-loading>
+      </div>
       </template>
       <template v-slot:after>
         <div  class="console fit rounded-borders scroll" v-if="showConsole">
-          <q-list separator class="q-pa-xd" dark>
+          <q-list separator class="q-pa-xd">
             <restore
               v-for="(resource, index) in restores"
               :key="'R-' + index"

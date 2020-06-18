@@ -1,5 +1,5 @@
 <template>
-  <div class="bkit-explorer relative-position">
+  <div class="bkit-explorer relative-position dark EXPLORER">
     <q-toolbar class="bkit-toolbar justify-center" v-if="rvid">
       <keep-alive>
         <snaps :rvid="rvid" :snap.sync="snap" ref="snaps"></snaps>
@@ -30,6 +30,7 @@
         <q-scroll-area class="fit" :thumb-style="thumbStyle" :bar-style="barStyle">
           <q-list>
             <tree
+              class="dark"
               :entry="root"
               :mountpoint="mountpoint"
               :rvid="rvid"

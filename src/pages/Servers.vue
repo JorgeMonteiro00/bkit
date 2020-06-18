@@ -1,5 +1,5 @@
 <template>
-  <q-page padding class="relative">
+  <q-page padding class="relative dark">
     <q-list padding class="absolute-center" style="min-width:20em">
       <q-item v-if="!servers.length">
         <q-item-section>
@@ -22,7 +22,7 @@
           <q-item-label>{{server}}</q-item-label>
         </q-item-section>
         <q-item-section side v-show="isSelected(server)">
-          <q-btn label="Go" color="ok" outline no-caps @click.stop="go"/>
+          <q-btn class="ndark" label="Go" color="ok" outline no-caps @click.stop="go"/>
         </q-item-section>
       </q-item>
       <q-item>
@@ -40,7 +40,7 @@
             hint="Address of a bKit server"
             label="Add Server">
             <template v-slot:append>
-              <q-btn outline icon="add" no-caps stack
+              <q-btn class="ndark" outline icon="add" no-caps stack
                 @click="add"
                 v-if="!error && !adding"
                 size="xs"

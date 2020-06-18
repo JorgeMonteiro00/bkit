@@ -26,7 +26,7 @@
         <Slider @input="change" v-model="color"
           v-if="chooseop === 'Slider'"/>
       </div>
-      <div class="q-pa-md q-ml-lg nodark">
+      <div class="q-pa-md q-ml-lg">
        <div style="with:100%; text-align:center" class="dark">Select the color that you want to change</div>
        <q-chip v-for="option in options" :key="option.value"
         :label="option.label"

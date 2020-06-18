@@ -4,7 +4,7 @@
       dense
       dense-toggle
       v-model="open"
-      class="b-tree"
+      class="b-tree TREE"
       :ref="path"
       :header-style="isSelected ? 'background-color:var(--q-color-selected)' : ''"
       expand-icon="keyboard_arrow_down"
