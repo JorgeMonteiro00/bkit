@@ -1,9 +1,9 @@
 <template>
-  <q-page padding class="relative">
+  <q-page padding class="relative dark">
     <div style="with:100%; text-align:center">
       On this page you may customize the colors used by the bKit GUI
     </div>
-    <div>Text Color</div>
+    <button @click="darkThemeSwitch">Switch Theme</button>
     <div class="full with row justify-center">
     <q-toggle v-model="texto" left-label label="w/b"/>
     <q-toggle v-model="fgbg" rigth-label label="fb/bg" />
@@ -12,7 +12,7 @@
       style="max-width: 23em"
       label="If you want you may switch to another pickup color" />
     <div class="row no-wrap items-stretch q-mt-lg">
-      <div style="min-width:50%" class="row items-center justify-center">
+      <div style="min-width:50%" class="row items-center justify-center nodark">
         <Photoshop @input="change" v-model="color"
           v-if="chooseop === 'Photoshop'"/>
         <Material @input="change" v-model="color"
@@ -26,12 +26,12 @@
         <Slider @input="change" v-model="color"
           v-if="chooseop === 'Slider'"/>
       </div>
-      <div class="q-pa-md q-ml-lg">
-       <div style="with:100%; text-align:center" >Select the color that you want to change</div>
+      <div class="q-pa-md q-ml-lg nodark">
+       <div style="with:100%; text-align:center" class="dark">Select the color that you want to change</div>
        <q-chip v-for="option in options" :key="option.value"
         :label="option.label"
         :selected="bgcolor === option.value"
-        style="cursor:pointer; min-width: 140px;"
+        style="cursor:pointer;min-width: 140px"
         @click.native="setcolor(option.value)"
         inline dense
         class="q-pa-md q-ml-lg centrado"
@@ -139,7 +139,31 @@ export default {
     },
     setcolor (val) {
       this.bgcolor = val
+    },
+    _addDarkTheme () {
+      let darkThemeLinkEl = document.createElement('link')
+      darkThemeLinkEl.setAttribute('rel', 'stylesheet')
+      darkThemeLinkEl.setAttribute('href', 'statics/darktheme.css')
+      darkThemeLinkEl.setAttribute('type', 'text/css')
+      darkThemeLinkEl.setAttribute('id', 'dark-theme-style')
+
+      let docHead = document.querySelector('head')
+      docHead.append(darkThemeLinkEl)
+    },
+    _removeDarkTheme () {
+      let darkThemeLinkEl = document.querySelector('#dark-theme-style')
+      let parentNode = darkThemeLinkEl.parentNode
+      parentNode.removeChild(darkThemeLinkEl)
+    },
+    darkThemeSwitch () {
+      let darkThemeLinkEl = document.querySelector('#dark-theme-style')
+      if (!darkThemeLinkEl) {
+        this._addDarkTheme()
+      } else {
+        this._removeDarkTheme()
+      }
     }
+
   },
   async mounted () {
   }
